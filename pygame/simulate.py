@@ -1,11 +1,15 @@
+import math
 import sys
 import numpy as np
 import pygame
 from pygame.locals import *
 
+
 # set up the colors (RGB - red-green-blue values)
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
+GREEN = (0,255,0)
+color = BLUE
 
 # set up pygame
 pygame.init()
@@ -19,7 +23,7 @@ pygame.display.set_caption('Covid-19 hermir')
 FRAMES_PER_SECOND = 30
 fpsClock = pygame.time.Clock()
 
-n = 50 # Number of points
+n = 10 # Number of points
 speed = 0.01
 radius = 5
 
@@ -38,6 +42,8 @@ while True:
 
     # Update positions
     for i in range(n):
+        windowSurface.fill(WHITE)
+        
         # Reverse directon if point hits the boundary
         if x[i] < 0 or x[i] > 1:
             vx[i] = -1 * vx[i]
@@ -46,10 +52,36 @@ while True:
         x[i] += vx[i]
         y[i] += vy[i]
 
+    for i in range(n):
+        for j in range(i+1,n):
+            distance = math.hypot(int(x[i] * xmax) - int(x[j] * xmax), int(y[i] * ymax)- int(y[j]* ymax))
+            if distance <= radius + radius:
+                color = GREEN
+                print('grænn')
+                vx[i] = -1 * vx[i]
+                vy[i] = -1 * vy[i]
+                vx[j] = -1 * vy[j]
+                vx[j] = -1 * vy[j]
+            else:
+                color = BLUE
+    
+            
+    
+    
+
+        
+
+        
+   
+        
+
     # Redraw
     for i in range(n):
-        pygame.draw.circle(windowSurface, BLUE, \
+        pygame.draw.circle(windowSurface, color, \
                            (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+    
+       
+   
 
     # Event handling
     for event in pygame.event.get():
