@@ -69,6 +69,8 @@ while True:
                 vy[j] = -1 * vy[j]
                 if color[i] == GREEN:
                     color[j] = GREEN
+                elif color[j] == GREEN:
+                    color[i] = GREEN
         
 
         
