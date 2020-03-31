@@ -11,16 +11,6 @@ BLUE = (0, 0, 255)
 GREEN = (0,255,0)
 
 
-class Circle:
-    def __init__(self, x, y, radius, color):
-        self.x = x
-        self.y = y
-        self.radius = radius
-        self.color = color
-
-    def display(self):
-        pygame.draw.circle(windowSurface, self.color, (self.x, self.y), self.radius, 1)
-
 
 # set up pygame
 pygame.init()
