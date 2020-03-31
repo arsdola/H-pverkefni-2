@@ -65,8 +65,8 @@ while True:
             if distance <= radius*2:
                 vx[i] = -1 * vx[i]
                 vy[i] = -1 * vy[i]
-                vx[j] = -1 * vy[j]
-                vx[j] = -1 * vy[j]
+                vx[j] = -1 * vx[j]
+                vy[j] = -1 * vy[j]
                 if color[i] == GREEN:
                     color[j] = GREEN
         
