@@ -21,9 +21,9 @@ class Svaedi:
         self.topY = topY
         self.bottomY = bottomY
         
-        self.persons[0] = Person(SICK, speed, leftX, rightX, bottomY, topY)
+        self.persons[0] = Person(SICK, speed, leftX, rightX, topY, bottomY)
         for i in range(1,n):
-            self.persons[i] = Person(HEALTHY, speed, leftX, rightX, bottomY, topY)
+            self.persons[i] = Person(HEALTHY, speed, leftX, rightX, topY, bottomY)
                 
 
         
