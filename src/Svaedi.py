@@ -15,15 +15,18 @@ class Svaedi:
         self.n = n
         self.speed = speed
         self.persons = np.zeros(n, dtype = object)
-        self.persons[0] = Person(SICK, speed)
         
-        for i in range(1,n):
-            self.persons[i] = Person(HEALTHY, speed)
-            
         self.leftX = leftX
         self.rightX = rightX
         self.topY = topY
         self.bottomY = bottomY
+        
+        self.persons[0] = Person(SICK, speed, leftX, rightX, bottomY, topY)
+        for i in range(1,n):
+            self.persons[i] = Person(HEALTHY, speed, leftX, rightX, bottomY, topY)
+                
+
+        
     
     def move(self, xmax, ymax):
         for i in range(self.n):
@@ -36,7 +39,7 @@ class Svaedi:
                 self.persons[i].vy = -1 * self.persons[i].vy
             self.persons[i].x += self.persons[i].vx
             self.persons[i].y += self.persons[i].vy
-            
+
         for i in range(self.n):
             for j in range(i+1, self.n):
                 distance = math.hypot(int(self.persons[i].x * xmax)-int(self.persons[j].x * xmax), int(self.persons[i].y * ymax) - int(self.persons[j].y * ymax))
@@ -46,7 +49,7 @@ class Svaedi:
                     self.persons[j].vx = -1 * self.persons[j].vx
                     self.persons[j].vy = -1 * self.persons[j].vy
                     if self.persons[i].health == SICK:
-                        self.persons[j].health == SICK
+                        self.persons[j].health = SICK
                     elif self.persons[j].health == SICK:
                         self.persons[i].health = SICK
 

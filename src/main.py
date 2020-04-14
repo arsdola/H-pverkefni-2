@@ -21,14 +21,16 @@ fpsClock = pygame.time.Clock()
 n = 20
 
 Rvk = Svaedi(n, 0, 0.5, 0.5, 0)
-
+Ak = Svaedi(n, 0.5, 1, 1, 0.5)
 
 while True:
     windowSurface.fill(WHITE)
 
     Rvk.move(xmax, ymax)
+    Ak.move(xmax, ymax)
 
     Rvk.draw(windowSurface, xmax, ymax)
+    Ak.draw(windowSurface, xmax, ymax)
    
     for event in pygame.event.get():
         if event.type == QUIT:

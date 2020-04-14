@@ -9,9 +9,13 @@ RADIUS = 5
 
 class Person:
 
-    def __init__(self, health, speed):
-        self.x = random.uniform(0,1)
-        self.y = random.uniform(0,1)
+    def __init__(self, health, speed, leftX, rightX, topY, bottomY):
+        self.leftX = leftX
+        self.rightX = rightX
+        self.bottomY = bottomY
+        self.topY = topY
+        self.x = random.uniform(self.leftX, self.rightX)
+        self.y = random.uniform(self.bottomY, self.topY)
         self.speed = speed
         self.vx = speed * random.uniform(0,1)
         self.vy = speed * random.uniform(0,1)
