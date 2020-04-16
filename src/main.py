@@ -6,7 +6,7 @@ import pygame
 import pygame_gui
 import time
 from pygame.locals import *
-from Svaedi import *
+from svaedi import *
 
 WHITE = (255, 255, 255)
 
@@ -18,9 +18,11 @@ windowSurface = pygame.display.set_mode((xmax, ymax))
 pygame.display.set_caption('Covid-19 hermir')
 
 ##
+#background = pygame.Surface((800, 600))
 background = pygame.Surface((xmax, ymax))
 background.fill(WHITE)
 
+#manager = pygame_gui.UIManager((800, 600))
 manager = pygame_gui.UIManager((xmax, ymax))
 
 caption = pygame_gui.elements.ui_text_box.UITextBox('Texti hér....', pygame.Rect((10,20),(300,30)), manager = manager)

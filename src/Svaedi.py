@@ -4,11 +4,9 @@ import sys
 import numpy as np
 import pygame
 from pygame.locals import *
-from Person import *
+from person import *
 
-HEALTHY = (0, 0, 255)
-SICK = (0, 255, 0)
-BLACK = (0, 0, 0)
+
 
 class Svaedi:
     
@@ -34,6 +32,9 @@ class Svaedi:
             self.persons[i].move()
 
         for i in range(self.n):
+            self.persons[i].update()
+
+        for i in range(self.n):
             if self.persons[i].x < self.leftX or self.persons[i].x > self.rightX:
                 self.persons[i].vx = -1 * self.persons[i].vx
             if self.persons[i].y < self.bottomY or self.persons[i].y > self.topY:
@@ -50,15 +51,17 @@ class Svaedi:
                     self.persons[j].vx = -1 * self.persons[j].vx
                     self.persons[j].vy = -1 * self.persons[j].vy
                     if self.persons[i].health == SICK:
-                        self.persons[j].health = SICK
+                        self.persons[j].set_sick()
                     elif self.persons[j].health == SICK:
-                        self.persons[i].health = SICK
+                        self.persons[i].set_sick()
 
                       
     def draw(self, windowSurface, xmax, ymax):
         for i in range(self.n):
             self.persons[i].draw(windowSurface, xmax, ymax)
-            pygame.draw.rect(windowSurface, BLACK, [0, 200, 600, 5])
-            pygame.draw.rect(windowSurface, BLACK, [300, 0, 5, 400])
 
+        pygame.draw.line(windowSurface, (0,0,0), (self.leftX*xmax, self.topY*ymax), (self.rightX*xmax, self.topY*ymax), 2)
+        pygame.draw.line(windowSurface, (0,0,0), (self.leftX*xmax, self.bottomY*ymax), (self.rightX*xmax, self.bottomY*ymax), 2)
 
+        pygame.draw.line(windowSurface, (0,0,0), (self.leftX*xmax, self.topY*ymax), (self.leftX*xmax, self.bottomY*ymax), 2)
+        pygame.draw.line(windowSurface, (0,0,0), (self.rightX*xmax, self.topY*ymax), (self.rightX*xmax, self.bottomY*ymax), 2)
