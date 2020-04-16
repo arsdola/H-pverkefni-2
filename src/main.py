@@ -58,13 +58,9 @@ def button1():
         Ekkert.move(xmax, ymax)
         Ekkert.draw(windowSurface, xmax, ymax)
 
-        sick_persons = []
-        for person in Ekkert.persons:
-            if person.health == SICK:
-                sick_persons.append(person)
-        
-        if len(sick_persons) == n:
-            run = False
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                run = False
             
         pygame.display.update()
         fpsClock.tick(FRAMES_PER_SECOND)
@@ -88,23 +84,9 @@ def button2():
         Egils.draw(windowSurface, xmax, ymax)
         Isafj.draw(windowSurface, xmax, ymax)
 
-        sick_persons = []
-        for person in Rvk.persons:
-            if person.health == SICK:
-                sick_persons.append(person)
-        for person in Ak.persons:
-            if person.health == SICK:
-                sick_persons.append(person)
-        for person in Egils.persons:
-            if person.health == SICK:
-                sick_persons.append(person)
-        for person in Isafj.persons:
-            if person.health == SICK:
-                sick_persons.append(person)
-                
-        
-        if len(sick_persons) == (n + n1 + n2 + n3):
-            run = False
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                run = False
             
         pygame.display.update()
         fpsClock.tick(FRAMES_PER_SECOND)
