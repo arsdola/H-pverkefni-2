@@ -38,8 +38,8 @@ FRAMES_PER_SECOND = 30
 fpsClock = pygame.time.Clock()
 
     
-n = 20
-n1 = 15
+n = 10
+n1 = 5
 n2 = 5
 n3 = 5
 
@@ -78,11 +78,21 @@ def button2():
         Egils.move(xmax, ymax)
         Isafj.move(xmax, ymax)
 
+        #### 
+        rand_nr = random.uniform(0,1)
+        if rand_nr < 0.05 or rand_nr == 0.05:
+            print(rand_nr)
+            Rvk.persons = np.delete(Rvk.persons, 1)
+            Rvk.n = Rvk.n-1
+            Ak.n = Ak.n+1
+            Ak.persons = np.append(Ak.persons, Person(HEALTHY, Ak.speed, 0.5, 1, 1, 0.5))
+        ####
+
 
         Rvk.draw(windowSurface, xmax, ymax)
         Ak.draw(windowSurface, xmax, ymax)
-        Egils.draw(windowSurface, xmax, ymax)
-        Isafj.draw(windowSurface, xmax, ymax)
+        #Egils.draw(windowSurface, xmax, ymax)
+        #Isafj.draw(windowSurface, xmax, ymax)
 
         for event in pygame.event.get():
             if event.type == QUIT:
