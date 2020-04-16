@@ -8,6 +8,7 @@ from Person import *
 
 HEALTHY = (0, 0, 255)
 SICK = (0, 255, 0)
+BLACK = (0, 0, 0)
 
 class Svaedi:
     
@@ -57,6 +58,7 @@ class Svaedi:
     def draw(self, windowSurface, xmax, ymax):
         for i in range(self.n):
             self.persons[i].draw(windowSurface, xmax, ymax)
-
+            pygame.draw.rect(windowSurface, BLACK, [0, 200, 600, 5])
+            pygame.draw.rect(windowSurface, BLACK, [300, 0, 5, 400])
 
 
