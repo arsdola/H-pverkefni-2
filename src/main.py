@@ -30,6 +30,7 @@ caption = pygame_gui.elements.ui_text_box.UITextBox('Texti hér....', pygame.Rec
 
 button_1 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 50), (200,50)), text = 'Takki 1 = Ekkert gert!', manager = manager)
 button_2 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 110), (200,50)), text = 'Takki 2 = 4 svæði', manager = manager)
+button_3 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 170), (200,50)), text = 'Takki 3 = Sóttkví?', manager = manager)
 
 
 ##
@@ -78,14 +79,15 @@ def button2():
         Egils.move(xmax, ymax)
         Isafj.move(xmax, ymax)
 
-        #### 
-        rand_nr = random.uniform(0,1)
-        if rand_nr < 0.05 or rand_nr == 0.05:
-            print(rand_nr)
-            Rvk.persons = np.delete(Rvk.persons, 1)
-            Rvk.n = Rvk.n-1
-            Ak.n = Ak.n+1
-            Ak.persons = np.append(Ak.persons, Person(HEALTHY, Ak.speed, 0.5, 1, 1, 0.5))
+        ####
+        if Rvk.n > 5:
+            rand_nr = random.uniform(0,1)
+            if rand_nr < 0.05 or rand_nr == 0.05:
+                print(rand_nr)
+                Rvk.persons = np.delete(Rvk.persons, 1)
+                Rvk.n = Rvk.n-1
+                Ak.n = Ak.n+1
+                Ak.persons = np.append(Ak.persons, Person(HEALTHY, Ak.speed, 0.5, 1, 1, 0.5))
         ####
 
 
@@ -127,6 +129,10 @@ def run_loop():
                     if event.ui_element == button_2:
                         print('pressed button 2')
                         button2()
+
+                    if event.ui_element == button_3:
+                        print('pressed button 3')
+                        #button3()
                         
                         
 
