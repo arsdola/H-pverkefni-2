@@ -26,20 +26,25 @@ background.fill(WHITE)
 #manager = pygame_gui.UIManager((800, 600))
 manager = pygame_gui.UIManager((xmax, ymax))
 
-caption = pygame_gui.elements.ui_text_box.UITextBox('Texti hér....', pygame.Rect((10,20),(240,30)), manager = manager)
+caption = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((10,20),(400,30)), text = 'Hermun eftir Covid-19 í mismunandi aðstæðum: ',manager = manager)
 
 
-button_1 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 70), (200,50)), text = 'Takki 1 = Ekkert gert!', manager = manager)
-button_2 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 150), (200,50)), text = 'Takki 2 = 4 svæði', manager = manager)
-button_3 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 230), (200,50)), text = 'Takki 3 = Sóttkví?', manager = manager)
+button_1 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 90), (200,50)), text = 'Takki 1 = Ekkert gert!', manager = manager)
+button_2 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 200), (200,50)), text = 'Takki 2 = 4 svæði', manager = manager)
+button_3 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 300), (200,50)), text = 'Takki 3 = Sóttkví?', manager = manager)
 
-slider = pygame_gui.elements.ui_text_box.UITextBox('Veldu fjölda persóna: ', pygame.Rect((250,20),(200,30)), manager = manager)
-horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((250, 70), (200, 50)),start_value = 5, value_range=(2,20),manager=manager)
+slider = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((250,80),(200,30)), text = 'Veldu fjölda persóna:',manager = manager)
+horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((250, 110), (200, 30)),start_value = 5, value_range=(2,50),manager=manager)
 
-horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((250, 120), (150, 50)),start_value = 5, value_range=(2,10),manager=manager)
-horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((400, 120), (150, 50)),start_value = 5, value_range=(2,10),manager=manager)
-horiz_slider3 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((250, 170), (150, 50)),start_value = 5, value_range=(2,10),manager=manager)
-horiz_slider4 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((400, 170), (150, 50)),start_value = 5, value_range=(2,10),manager=manager)
+slider1 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((240,170),(170,20)), text = 'Fjöldi fyrir Svæði 1:',manager = manager)
+slider2 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((420,170),(170,20)), text = 'Fjöldi fyrir Svæði 2:',manager = manager)
+slider3 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((240,220),(170,20)), text = 'Fjöldi fyrir Svæði 3:',manager = manager)
+slider4 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((420,220),(170,20)), text = 'Fjöldi fyrir Svæði 4:',manager = manager)
+
+horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((240, 190), (160, 30)),start_value = 5, value_range=(2,10),manager=manager)
+horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((420, 190), (160, 30)),start_value = 5, value_range=(2,10),manager=manager)
+horiz_slider3 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((240, 240), (160, 30)),start_value = 5, value_range=(2,10),manager=manager)
+horiz_slider4 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((420, 240), (160, 30)),start_value = 5, value_range=(2,10),manager=manager)
 
 
 ##
