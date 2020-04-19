@@ -9,6 +9,7 @@ from pygame.locals import *
 from svaedi import *
 
 WHITE = (255, 255, 255)
+SICK = (0, 255, 0)
 
 pygame.init()
 
@@ -39,17 +40,24 @@ FRAMES_PER_SECOND = 30
 fpsClock = pygame.time.Clock()
 
     
-n = 10
-n1 = 5
-n2 = 5
-n3 = 5
+n = 2
+n1 = 2
+n2 = 2
+n3 = 2
 
 Ekkert = Svaedi(n, 0, 1, 1, 0)
+Ekkert.persons = np.delete(Ekkert.persons, 1)
+Ekkert.persons = np.append(Ekkert.persons, Person(SICK, Ekkert.speed, 0, 1, 1, 0))
 
 Rvk = Svaedi(n, 0, 0.5, 0.5, 0)
 Ak = Svaedi(n1, 0.5, 1, 1, 0.5)
 Egils = Svaedi(n2, 0, 0.5, 1, 0.5)
 Isafj = Svaedi(n3, 0.5, 1, 0.5, 0)
+
+## Byrja með einn sýktan í Rvk
+Rvk.persons = np.delete(Rvk.persons, 1)
+Rvk.persons = np.append(Rvk.persons, Person(SICK, Rvk.speed, 0, 0.5, 0.5, 0))
+
 
 def button1():
     run = True
@@ -78,23 +86,76 @@ def button2():
         Ak.move(xmax, ymax)
         Egils.move(xmax, ymax)
         Isafj.move(xmax, ymax)
-
-        ####
-        if Rvk.n > 5:
-            rand_nr = random.uniform(0,1)
-            if rand_nr < 0.05 or rand_nr == 0.05:
-                print(rand_nr)
-                Rvk.persons = np.delete(Rvk.persons, 1)
+        
+        for i in range(Rvk.n):
+            if Rvk.next_to_rightBorder(i) and (Rvk.n == n or Rvk.n > n):
+                print('Rvk grænn og snertir hægri')
+                Rvk.persons = np.delete(Rvk.persons, i)
                 Rvk.n = Rvk.n-1
+                Isafj.n = Isafj.n+1
+                Isafj.persons = np.append(Isafj.persons, Person(SICK, Isafj.speed, 0.5, 1, 0.5, 0))
+
+        
+        for i in range(Rvk.n):
+            if Rvk.next_to_bottomBorder(i) and (Rvk.n == n or Rvk.n > n):
+                print('Rvk grænn og snertir niðri')
+                Rvk.persons = np.delete(Rvk.persons, i)
+                Rvk.n = Rvk.n-1
+                Egils.n = Egils.n+1
+                Egils.persons = np.append(Egils.persons, Person(SICK, Egils.speed, 0, 0.5, 1, 0.5))
+
+        for i in range(Egils.n):
+            if Egils.next_to_topBorder(i) and (Egils.n > n2 or Egils.n == n2):
+                print('Egils grænn og snertir uppi')
+                Egils.persons = np.delete(Egils.persons, i)
+                Egils.n = Egils.n-1
+                Rvk.n = Rvk.n+1
+                Rvk.persons = np.append(Rvk.persons, Person(SICK, Rvk.speed, 0, 0.5, 0.5, 0))
+
+        for i in range(Egils.n):
+            if Egils.next_to_rightBorder(i) and (Egils.n > n2 or Egils.n == n2):
+                print('Egils grænn og snertir hægri')
+                Egils.persons = np.delete(Egils.persons, i)
+                Egils.n = Egils.n-1
                 Ak.n = Ak.n+1
-                Ak.persons = np.append(Ak.persons, Person(HEALTHY, Ak.speed, 0.5, 1, 1, 0.5))
-        ####
+                Ak.persons = np.append(Ak.persons, Person(SICK, Ak.speed, 0.5, 1, 1, 0.5))
 
+        for i in range(Ak.n):
+            if Ak.next_to_leftBorder(i) and (Ak.n > n1 or Ak.n == n1):
+                print('Ak grænn og snertir vinstri')
+                Ak.persons = np.delete(Ak.persons, i)
+                Ak.n = Ak.n-1
+                Egils.n = Egils.n+1
+                Egils.persons = np.append(Egils.persons, Person(SICK, Egils.speed, 0, 0.5, 1, 0.5))
 
+        for i in range(Ak.n):
+            if Ak.next_to_topBorder(i) and (Ak.n > n1 or Ak.n == n1):
+                print('Ak grænn og snertir uppi')
+                Ak.persons = np.delete(Ak.persons, i)
+                Ak.n = Ak.n-1
+                Isafj.n = Isafj.n+1
+                Isafj.persons = np.append(Isafj.persons, Person(SICK, Isafj.speed, 0.5, 1, 0.5, 0))
+
+        for i in range(Isafj.n):
+            if Isafj.next_to_bottomBorder(i) and (Isafj.n > n3 or Isafj.n == n3):
+                print('Isafj grænn og snertir niðri')
+                Isafj.persons = np.delete(Isafj.persons, i)
+                Isafj.n = Isafj.n-1
+                Ak.n = Ak.n+1
+                Ak.persons = np.append(Ak.persons, Person(SICK, Ak.speed, 0.5, 1, 1, 0.5))
+
+        for i in range(Isafj.n):
+            if Isafj.next_to_leftBorder(i) and (Isafj.n > n3 or Isafj.n == n3):
+                print('Isafj grænn og snertir vinstri')
+                Isafj.persons = np.delete(Isafj.persons, i)
+                Isafj.n = Isafj.n-1
+                Rvk.n = Rvk.n+1
+                Rvk.persons = np.append(Rvk.persons, Person(SICK, Rvk.speed, 0, 0.5, 0.5, 0))
+        
         Rvk.draw(windowSurface, xmax, ymax)
         Ak.draw(windowSurface, xmax, ymax)
-        #Egils.draw(windowSurface, xmax, ymax)
-        #Isafj.draw(windowSurface, xmax, ymax)
+        Egils.draw(windowSurface, xmax, ymax)
+        Isafj.draw(windowSurface, xmax, ymax)
 
         for event in pygame.event.get():
             if event.type == QUIT:

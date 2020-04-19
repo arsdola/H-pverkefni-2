@@ -20,12 +20,51 @@ class Svaedi:
         self.topY = topY
         self.bottomY = bottomY
         
-        self.persons[0] = Person(SICK, speed, leftX, rightX, topY, bottomY)
-        for i in range(1,n):
+        for i in range(n):
             self.persons[i] = Person(HEALTHY, speed, leftX, rightX, topY, bottomY)
-                
 
-        
+
+    def next_to_leftBorder(self, i):
+        #random_nr = random.uniform(0,1)
+        #if random_nr < 0.05 or random_nr == 0.05:
+        if i < self.n:
+            if self.persons[i].health == SICK:
+                if self.persons[i].x < self.leftX and self.leftX != 0:
+                    return True
+        else:
+            return False
+
+    def next_to_rightBorder(self, i):
+        #random_nr = random.uniform(0,1)
+        #if random_nr < 0.05 or random_nr == 0.05:
+        if i < self.n:
+            if self.persons[i].health == SICK:
+                if self.persons[i].x > self.rightX and self.rightX != 1:
+                    return True
+        else:
+            return False
+            
+    def next_to_bottomBorder(self, i):
+        #random_nr = random.uniform(0,1)
+        #if random_nr < 0.05 or random_nr == 0.05:
+        if i < self.n:
+            if self.persons[i].health == SICK:
+                if self.persons[i].y > self.topY and self.topY != 1:
+                    return True
+        else:
+            return False
+            
+    def next_to_topBorder(self, i):
+        #random_nr = random.uniform(0,1)
+        #if random_nr < 0.05 or random_nr == 0.05:
+        if i < self.n:
+            if self.persons[i].health == SICK:
+                if self.persons[i].y < self.bottomY  and self.bottomY != 0:
+                    return True
+        else:
+            return False
+                
+            
     
     def move(self, xmax, ymax):
         for i in range(self.n):
@@ -34,6 +73,7 @@ class Svaedi:
         for i in range(self.n):
             self.persons[i].update()
 
+        
         for i in range(self.n):
             if self.persons[i].x < self.leftX or self.persons[i].x > self.rightX:
                 self.persons[i].vx = -1 * self.persons[i].vx
