@@ -26,27 +26,27 @@ background.fill(WHITE)
 #manager = pygame_gui.UIManager((800, 600))
 manager = pygame_gui.UIManager((xmax, ymax))
 
-caption = pygame_gui.elements.ui_text_box.UITextBox('Texti hér....', pygame.Rect((10,20),(300,30)), manager = manager)
+caption = pygame_gui.elements.ui_text_box.UITextBox('Texti hér....', pygame.Rect((10,20),(240,30)), manager = manager)
 
 
-button_1 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 50), (200,50)), text = 'Takki 1 = Ekkert gert!', manager = manager)
-button_2 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 110), (200,50)), text = 'Takki 2 = 4 svæði', manager = manager)
-button_3 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 170), (200,50)), text = 'Takki 3 = Sóttkví?', manager = manager)
+button_1 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 70), (200,50)), text = 'Takki 1 = Ekkert gert!', manager = manager)
+button_2 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 150), (200,50)), text = 'Takki 2 = 4 svæði', manager = manager)
+button_3 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 230), (200,50)), text = 'Takki 3 = Sóttkví?', manager = manager)
 
-horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((250, 50), (200, 50)),start_value = 5, value_range=(2,20),manager=manager)
+slider = pygame_gui.elements.ui_text_box.UITextBox('Veldu fjölda persóna: ', pygame.Rect((250,20),(200,30)), manager = manager)
+horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((250, 70), (200, 50)),start_value = 5, value_range=(2,20),manager=manager)
 
-print(int(horiz_slider.get_current_value()))
+horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((250, 120), (150, 50)),start_value = 5, value_range=(2,10),manager=manager)
+horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((400, 120), (150, 50)),start_value = 5, value_range=(2,10),manager=manager)
+horiz_slider3 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((250, 170), (150, 50)),start_value = 5, value_range=(2,10),manager=manager)
+horiz_slider4 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((400, 170), (150, 50)),start_value = 5, value_range=(2,10),manager=manager)
+
 
 ##
 
 FRAMES_PER_SECOND = 30
 fpsClock = pygame.time.Clock()
 
-    
-n = 2
-n1 = 2
-n2 = 2
-n3 = 2
 
 def button1():
     
@@ -72,6 +72,11 @@ def button1():
     
                 
 def button2():
+
+    n = int(horiz_slider1.get_current_value())
+    n1 = int(horiz_slider2.get_current_value())
+    n2 = int(horiz_slider3.get_current_value())
+    n3 = int(horiz_slider4.get_current_value())
 
     Rvk = Svaedi(n, 0, 0.5, 0.5, 0)
     Ak = Svaedi(n1, 0.5, 1, 1, 0.5)
@@ -202,7 +207,21 @@ def run_loop():
                 if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
                     if event.ui_element == horiz_slider:
                         value = int(horiz_slider.get_current_value())
-                        print('value = ', value) 
+                        print('value = ', value)
+                    if event.ui_element == horiz_slider1:
+                        value = int(horiz_slider1.get_current_value())
+                        print('value = ', value)
+                    if event.ui_element == horiz_slider2:
+                        value = int(horiz_slider2.get_current_value())
+                        print('value = ', value)
+                    if event.ui_element == horiz_slider3:
+                        value = int(horiz_slider3.get_current_value())
+                        print('value = ', value)
+                    if event.ui_element == horiz_slider4:
+                        value = int(horiz_slider4.get_current_value())
+                        print('value = ', value)
+
+                    
                     
             manager.process_events(event)
         manager.update(time_delta)
