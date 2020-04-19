@@ -40,6 +40,7 @@ class Person:
             if time_since_sick.total_seconds() > 10:
                 self.health = RECOVERED
 
+
     def draw(self, windowSurface, xmax, ymax):
         pygame.draw.circle(windowSurface, self.health, (int(xmax * self.x), int(ymax * self.y)), RADIUS, 0)
 

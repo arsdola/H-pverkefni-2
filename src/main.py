@@ -33,6 +33,9 @@ button_1 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 50), (200
 button_2 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 110), (200,50)), text = 'Takki 2 = 4 svæði', manager = manager)
 button_3 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 170), (200,50)), text = 'Takki 3 = Sóttkví?', manager = manager)
 
+horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((250, 50), (200, 50)),start_value = 5, value_range=(2,20),manager=manager)
+
+print(int(horiz_slider.get_current_value()))
 
 ##
 
@@ -45,21 +48,12 @@ n1 = 2
 n2 = 2
 n3 = 2
 
-Ekkert = Svaedi(n, 0, 1, 1, 0)
-Ekkert.persons = np.delete(Ekkert.persons, 1)
-Ekkert.persons = np.append(Ekkert.persons, Person(SICK, Ekkert.speed, 0, 1, 1, 0))
-
-Rvk = Svaedi(n, 0, 0.5, 0.5, 0)
-Ak = Svaedi(n1, 0.5, 1, 1, 0.5)
-Egils = Svaedi(n2, 0, 0.5, 1, 0.5)
-Isafj = Svaedi(n3, 0.5, 1, 0.5, 0)
-
-## Byrja með einn sýktan í Rvk
-Rvk.persons = np.delete(Rvk.persons, 1)
-Rvk.persons = np.append(Rvk.persons, Person(SICK, Rvk.speed, 0, 0.5, 0.5, 0))
-
-
 def button1():
+    
+    Ekkert = Svaedi(int(horiz_slider.get_current_value()), 0, 1, 1, 0)
+    Ekkert.persons = np.delete(Ekkert.persons, 1)
+    Ekkert.persons = np.append(Ekkert.persons, Person(SICK, Ekkert.speed, 0, 1, 1, 0))
+
     run = True
     while run:
         windowSurface.fill(WHITE)
@@ -78,6 +72,16 @@ def button1():
     
                 
 def button2():
+
+    Rvk = Svaedi(n, 0, 0.5, 0.5, 0)
+    Ak = Svaedi(n1, 0.5, 1, 1, 0.5)
+    Egils = Svaedi(n2, 0, 0.5, 1, 0.5)
+    Isafj = Svaedi(n3, 0.5, 1, 0.5, 0)
+
+    ## Byrja með einn sýktan í Rvk
+    Rvk.persons = np.delete(Rvk.persons, 1)
+    Rvk.persons = np.append(Rvk.persons, Person(SICK, Rvk.speed, 0, 0.5, 0.5, 0))
+
     run = True
     while run:
         windowSurface.fill(WHITE)
@@ -194,11 +198,11 @@ def run_loop():
                     if event.ui_element == button_3:
                         print('pressed button 3')
                         #button3()
-                        
-                        
 
-                            
-                        
+                if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
+                    if event.ui_element == horiz_slider:
+                        value = int(horiz_slider.get_current_value())
+                        print('value = ', value) 
                     
             manager.process_events(event)
         manager.update(time_delta)
