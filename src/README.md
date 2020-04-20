@@ -7,7 +7,11 @@
 3. pygame_gui
 
 ##### Verkefnið gerðu:
+
 Ársól Drífa Ólafsdóttir
+
 Gyrðir Hrafn Guðbrandsson
+
 Kolbrún María Bragadóttir
+
 Unnar Óli Arnarsson
