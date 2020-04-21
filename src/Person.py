@@ -9,8 +9,8 @@ import datetime
 RADIUS = 5
 
 HEALTHY = (0, 0, 255)
-SICK = (0, 255, 0)
-RECOVERED = (255, 255, 0)
+SICK = (255, 0, 0)
+RECOVERED = (0, 255, 0)
 
 class Person:
 
