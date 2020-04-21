@@ -4,7 +4,7 @@ import sys
 import numpy as np
 import pygame
 from pygame.locals import *
-from person import *
+from Person import *
 
 
 

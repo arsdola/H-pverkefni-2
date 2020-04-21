@@ -31,20 +31,26 @@ caption = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((10,2
 
 button_1 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 120), (200,50)), text = 'Ef ekkert væri gert!', manager = manager)
 button_2 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 260), (200,50)), text = 'Flutning á milli 4 svæða', manager = manager)
-button_3 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 410), (200,50)), text = 'Sóttkví', manager = manager)
+button_3 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((25, 440), (200,50)), text = 'Sóttkví', manager = manager)
 
 slider = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((260,110),(200,20)), text = 'Veldu fjölda: ',manager = manager)
-horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((260, 130), (210, 30)),start_value = 5, value_range=(2,50),manager=manager)
+horiz_slider = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((260, 130), (210, 30)),start_value = 5, value_range=(2,70),manager=manager)
 
 slider1 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((260,230),(170,20)), text = 'Fjöldi fyrir Svæði 1:',manager = manager)
 slider2 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((500,230),(170,20)), text = 'Fjöldi fyrir Svæði 2:',manager = manager)
 slider3 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((260,310),(170,20)), text = 'Fjöldi fyrir Svæði 3:',manager = manager)
 slider4 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((500,310),(170,20)), text = 'Fjöldi fyrir Svæði 4:',manager = manager)
 
-horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((260, 250), (210, 30)),start_value = 5, value_range=(2,10),manager=manager)
-horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((500, 250), (210, 30)),start_value = 5, value_range=(2,10),manager=manager)
-horiz_slider3 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((260, 330), (210, 30)),start_value = 5, value_range=(2,10),manager=manager)
-horiz_slider4 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((500, 330), (210, 30)),start_value = 5, value_range=(2,10),manager=manager)
+horiz_slider1 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((260, 250), (210, 30)),start_value = 5, value_range=(2,30),manager=manager)
+horiz_slider2 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((500, 250), (210, 30)),start_value = 5, value_range=(2,30),manager=manager)
+horiz_slider3 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((260, 330), (210, 30)),start_value = 5, value_range=(2,30),manager=manager)
+horiz_slider4 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((500, 330), (210, 30)),start_value = 5, value_range=(2,30),manager=manager)
+
+slider5 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((260,430),(170,20)), text = 'Fjöldi heilbrigða: ',manager = manager)
+slider6 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((500,430),(170,20)), text = 'Fjöldi í sóttkví: ',manager = manager)
+
+horiz_slider5 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((260, 450), (210, 30)),start_value = 20, value_range=(2,50),manager=manager)
+horiz_slider6 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((500, 450), (210, 30)),start_value = 5, value_range=(2,10),manager=manager)
 
 
 ##
@@ -183,8 +189,11 @@ def button2():
 def button3():
     windowSurface.fill(WHITE)
 
-    Healthy = Svaedi(30, 0, 0.8, 1, 0)
-    Sick = Svaedi(10, 0.8, 1, 0.6, 0.4)
+    n = int(horiz_slider5.get_current_value())
+    n1 = int(horiz_slider6.get_current_value())
+
+    Healthy = Svaedi(n, 0, 0.8, 1, 0)
+    Sick = Svaedi(n1, 0.8, 1, 0.6, 0.4)
     run = True
     hasTransferedOneToBeSick = False
 
@@ -278,6 +287,12 @@ def run_loop():
                         print('value = ', value)
                     if event.ui_element == horiz_slider4:
                         value = int(horiz_slider4.get_current_value())
+                        print('value = ', value)
+                    if event.ui_element == horiz_slider5:
+                        value = int(horiz_slider5.get_current_value())
+                        print('value = ', value)
+                    if event.ui_element == horiz_slider6:
+                        value = int(horiz_slider6.get_current_value())
                         print('value = ', value)
 
                     
