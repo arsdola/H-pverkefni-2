@@ -6,7 +6,7 @@ import pygame
 import pygame_gui
 import time
 from pygame.locals import *
-from svaedi import *
+from Svaedi import *
 
 WHITE = (255, 255, 255)
 SICK = (0, 255, 0)
@@ -180,8 +180,62 @@ def button2():
 
     run_loop()
 
+def button3():
+    windowSurface.fill(WHITE)
+
+    Healthy = Svaedi(30, 0, 0.8, 1, 0)
+    Sick = Svaedi(10, 0.8, 1, 0.6, 0.4)
+    run = True
+    hasTransferedOneToBeSick = False
+
+    for person in Sick.persons:
+        person.health = SICK
+
+    for person in Healthy.persons:
+        person.health = HEALTHY
+    
+    while run:
+        windowSurface.fill(WHITE)
+
+        Healthy.move(xmax, ymax)
+        Sick.move(xmax, ymax)
+
+        Healthy.draw(windowSurface, xmax, ymax)
+        Sick.draw(windowSurface, xmax, ymax)
+
+        allSickSick = True
+        for person in Sick.persons:
+            if person.health != SICK:
+                allSickSick = False
+
+        if allSickSick and not hasTransferedOneToBeSick:
+            hasTransferedOneToBeSick = True
+            Healthy.persons[0].set_sick()
+            
+
+        allHealthySick = True
+        for person in Healthy.persons:
+            if person.health != SICK:
+                allHealthySick = False
     
         
+    
+        run = not allHealthySick
+    
+        #pygame.display.update()
+        #fpsClock.tick(FRAMES_PER_SECOND)
+        #for event in pygame.event.get():
+            #manager.process_events(event)
+  
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                run = False
+            
+        pygame.display.update()
+        fpsClock.tick(FRAMES_PER_SECOND)
+
+    run_loop()
+    
 def run_loop():
 
     is_running = True
@@ -207,7 +261,7 @@ def run_loop():
 
                     if event.ui_element == button_3:
                         print('pressed button 3')
-                        #button3()
+                        button3()
 
                 if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
                     if event.ui_element == horiz_slider:
