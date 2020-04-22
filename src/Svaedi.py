@@ -25,8 +25,6 @@ class Svaedi:
 
 
     def next_to_leftBorder(self, i):
-        #random_nr = random.uniform(0,1)
-        #if random_nr < 0.05 or random_nr == 0.05:
         if i < self.n:
             if self.persons[i].health == SICK:
                 if self.persons[i].x < self.leftX and self.leftX != 0:
@@ -35,8 +33,6 @@ class Svaedi:
             return False
 
     def next_to_rightBorder(self, i):
-        #random_nr = random.uniform(0,1)
-        #if random_nr < 0.05 or random_nr == 0.05:
         if i < self.n:
             if self.persons[i].health == SICK:
                 if self.persons[i].x > self.rightX and self.rightX != 1:
@@ -45,8 +41,6 @@ class Svaedi:
             return False
             
     def next_to_bottomBorder(self, i):
-        #random_nr = random.uniform(0,1)
-        #if random_nr < 0.05 or random_nr == 0.05:
         if i < self.n:
             if self.persons[i].health == SICK:
                 if self.persons[i].y > self.topY and self.topY != 1:
@@ -55,8 +49,6 @@ class Svaedi:
             return False
             
     def next_to_topBorder(self, i):
-        #random_nr = random.uniform(0,1)
-        #if random_nr < 0.05 or random_nr == 0.05:
         if i < self.n:
             if self.persons[i].health == SICK:
                 if self.persons[i].y < self.bottomY  and self.bottomY != 0:

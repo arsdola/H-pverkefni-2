@@ -18,12 +18,10 @@ ymax = 600
 windowSurface = pygame.display.set_mode((xmax, ymax))
 pygame.display.set_caption('Covid-19 hermir')
 
-##
-#background = pygame.Surface((800, 600))
+
 background = pygame.Surface((xmax, ymax))
 background.fill(WHITE)
 
-#manager = pygame_gui.UIManager((800, 600))
 manager = pygame_gui.UIManager((xmax, ymax))
 
 caption = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((10,20),(400,40)), text = 'Hermun eftir Covid-19 í mismunandi aðstæðum: ',manager = manager)
@@ -52,8 +50,6 @@ slider6 = pygame_gui.elements.ui_label.UILabel(relative_rect = pygame.Rect((500,
 horiz_slider5 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((260, 450), (210, 30)),start_value = 20, value_range=(2,50),manager=manager)
 horiz_slider6 = pygame_gui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((500, 450), (210, 30)),start_value = 5, value_range=(2,10),manager=manager)
 
-
-##
 
 FRAMES_PER_SECOND = 30
 fpsClock = pygame.time.Clock()
@@ -109,7 +105,6 @@ def button2():
         
         for i in range(Rvk.n):
             if Rvk.next_to_rightBorder(i) and (Rvk.n == n or Rvk.n > n):
-                print('Rvk grænn og snertir hægri')
                 Rvk.persons = np.delete(Rvk.persons, i)
                 Rvk.n = Rvk.n-1
                 Isafj.n = Isafj.n+1
@@ -118,7 +113,6 @@ def button2():
         
         for i in range(Rvk.n):
             if Rvk.next_to_bottomBorder(i) and (Rvk.n == n or Rvk.n > n):
-                print('Rvk grænn og snertir niðri')
                 Rvk.persons = np.delete(Rvk.persons, i)
                 Rvk.n = Rvk.n-1
                 Egils.n = Egils.n+1
@@ -126,7 +120,6 @@ def button2():
 
         for i in range(Egils.n):
             if Egils.next_to_topBorder(i) and (Egils.n > n2 or Egils.n == n2):
-                print('Egils grænn og snertir uppi')
                 Egils.persons = np.delete(Egils.persons, i)
                 Egils.n = Egils.n-1
                 Rvk.n = Rvk.n+1
@@ -134,7 +127,6 @@ def button2():
 
         for i in range(Egils.n):
             if Egils.next_to_rightBorder(i) and (Egils.n > n2 or Egils.n == n2):
-                print('Egils grænn og snertir hægri')
                 Egils.persons = np.delete(Egils.persons, i)
                 Egils.n = Egils.n-1
                 Ak.n = Ak.n+1
@@ -142,7 +134,6 @@ def button2():
 
         for i in range(Ak.n):
             if Ak.next_to_leftBorder(i) and (Ak.n > n1 or Ak.n == n1):
-                print('Ak grænn og snertir vinstri')
                 Ak.persons = np.delete(Ak.persons, i)
                 Ak.n = Ak.n-1
                 Egils.n = Egils.n+1
@@ -150,7 +141,6 @@ def button2():
 
         for i in range(Ak.n):
             if Ak.next_to_topBorder(i) and (Ak.n > n1 or Ak.n == n1):
-                print('Ak grænn og snertir uppi')
                 Ak.persons = np.delete(Ak.persons, i)
                 Ak.n = Ak.n-1
                 Isafj.n = Isafj.n+1
@@ -158,7 +148,6 @@ def button2():
 
         for i in range(Isafj.n):
             if Isafj.next_to_bottomBorder(i) and (Isafj.n > n3 or Isafj.n == n3):
-                print('Isafj grænn og snertir niðri')
                 Isafj.persons = np.delete(Isafj.persons, i)
                 Isafj.n = Isafj.n-1
                 Ak.n = Ak.n+1
@@ -166,7 +155,6 @@ def button2():
 
         for i in range(Isafj.n):
             if Isafj.next_to_leftBorder(i) and (Isafj.n > n3 or Isafj.n == n3):
-                print('Isafj grænn og snertir vinstri')
                 Isafj.persons = np.delete(Isafj.persons, i)
                 Isafj.n = Isafj.n-1
                 Rvk.n = Rvk.n+1
@@ -230,11 +218,6 @@ def button3():
         
     
         run = not allHealthySick
-    
-        #pygame.display.update()
-        #fpsClock.tick(FRAMES_PER_SECOND)
-        #for event in pygame.event.get():
-            #manager.process_events(event)
   
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -261,15 +244,12 @@ def run_loop():
             if event.type == pygame.USEREVENT:
                 if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                     if event.ui_element == button_1:
-                        print('pressed button 1')
                         button1()
                 
                     if event.ui_element == button_2:
-                        print('pressed button 2')
                         button2()
 
                     if event.ui_element == button_3:
-                        print('pressed button 3')
                         button3()
 
                 if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
@@ -304,7 +284,6 @@ def run_loop():
         manager.draw_ui(windowSurface)
     
         pygame.display.update()
-        #fpsClock.tick(FRAMES_PER_SECOND)
 
 run_loop()
 

@@ -26,7 +26,7 @@ class Person:
         self.vy = speed * random.uniform(0,1)
         self.health = health
         
-        self.start_sick_time = datetime.datetime.now() # + datetime.timedelta(hours=5)
+        self.start_sick_time = datetime.datetime.now() 
         
 
     def set_sick(self):
